@@ -1,7 +1,7 @@
 defmodule Weber.Helper.ResourceHelper do
 
   @moduledoc """
-    Include static resrouces with Weber.Helper.ResourceHelper.
+    Include static resources with Weber.Helper.ResourceHelper.
   """
 
   import Weber.Helper.Html
@@ -10,28 +10,31 @@ defmodule Weber.Helper.ResourceHelper do
     Generates <script>...<script> resource.
 
     Example:
-            
+
       #
       # Generates: <script type="text/javascript" src="/static/test.js"></script>
+      # If no value is passed for src it defaults to "application.js"
       #
       script("/static/test.js")
-          
+      script()
+
   """
-  def script(src) do
+  def script(src // "/static/application.js") do
     tag(:script, "", [type: "text/javascript", src: src])
   end
-    
+
   @doc """
-    Genrates <link ... > resource.
+    Generates <link ... > resource for style elements.
 
     Example:
 
       #
       # Generates: <link href="/static/test.css" rel="stylesheet" media="screen">
-      #
-      link("/static/test.css")
+      # If no value is passed for href it defaults to "application.css"
+      style("/static/test.css")
+      style()
   """
-  def link(href, media // "screen") do
+  def style(href // "/static/application.css", media // "screen") do
     tag(:link, [href: href, rel: "stylesheet", media: media])
   end
 
