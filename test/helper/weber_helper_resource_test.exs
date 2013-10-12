@@ -8,9 +8,19 @@ defmodule WeberHelperResourceTest do
     assert(script == "<script type=\"text/javascript\" src=\"/static/test.js\"></script>")
   end
 
-  test "Create link tag" do
-    link = link("/static/test.css")
-    assert(link == "<link href=\"/static/test.css\" rel=\"stylesheet\" media=\"screen\">")
+  test "Create script tag with default value" do
+    script = script()
+    assert(script == "<script type=\"text/javascript\" src=\"/static/application.js\"></script>")
+  end
+
+  test "Create style tag" do
+    style = style("/static/test.css")
+    assert(style == "<link href=\"/static/test.css\" rel=\"stylesheet\" media=\"screen\">")
+  end
+
+  test "Create style tag with default value" do
+    style = style()
+    assert(style == "<link href=\"/static/application.css\" rel=\"stylesheet\" media=\"screen\">")
   end
 
   test "Create favicon tag" do
