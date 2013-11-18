@@ -8,6 +8,16 @@ defmodule Weber.Utils do
   import Path
 
   @doc """
+  Get weber's config
+  """
+  def weber_config do
+    case Code.ensure_loaded?(Config) do
+      true -> Dict.merge(Weber.DefaultConfig.config, Config.config, fn(_k, v1, v2) -> Dict.merge(v1, v2) end)
+      false -> Weber.DefaultConfig.config
+    end
+  end
+
+  @doc """
     Recursively get all files from directory.
   """
   def get_all_files(dir) do
