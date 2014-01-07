@@ -22,11 +22,16 @@ defmodule Mix.Tasks.Weber.Routes do
 
   defp format_route(route) do
     elements = Enum.map route, fn(vals) ->
-      {_, value} = vals
-      value
+      {key, value} = vals
+      case key do
+        :method -> "#{String.rjust(value, 6)}  "
+        :path -> String.ljust(value, 30)
+        :controller -> "#{value}#"
+        :action -> value
+      end
     end
 
-    Enum.join(elements, " ")
+    Enum.join(elements)
   end
 
 end
