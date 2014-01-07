@@ -14,9 +14,9 @@ defmodule Mix.Tasks.Weber do
   @shortdoc "Create a new weber project"
 
   use Mix.Task
-  
+
   @version Weber.Mixfile.project[:version]
-  
+
   def run([]) do
     usage
   end
@@ -34,9 +34,25 @@ defmodule Mix.Tasks.Weber do
     Usage:
 
       mix weber.new /home/user/testWebApp -- creates new weber web application
+      mix weber.routes -- prints out all defined routes
       mix weber --version -- shows weber version
       mix weber --help    -- shows weber help
     """
+  end
+
+  defmodule Routes do
+
+    @doc """
+    Prints routes
+    """
+    def run([]) do
+      Weber.run_weber
+      routes = Route.__route__
+
+      Mix.shell.info(inspect(routes))
+      Weber.stop([])
+    end
+
   end
 
   defmodule New do
@@ -56,7 +72,7 @@ defmodule Mix.Tasks.Weber do
       #
       path = Path.expand directoryName
       baseName = Path.basename directoryName
-      
+
       vars = HashDict.new [
         {"path", path},
         {"projectNamespace", Mix.Utils.camelize(baseName)},
@@ -86,14 +102,14 @@ defmodule Mix.Tasks.Weber do
         data -> replace_act(text, vars, data)
       end
     end
- 
+
     defp replace_act(text, _vars, []) do
       text
     end
-    
+
     defp replace_act(text, vars, [[entry, key] | tail]) do
       replace_act(String.replace(text, entry, HashDict.get(vars, key), []), vars, tail)
     end
-    
+
   end
 end

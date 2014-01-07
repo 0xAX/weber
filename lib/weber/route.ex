@@ -170,12 +170,12 @@ defmodule Weber.Route do
   end
 
   defp resources_routes(controller) do
-    url = List.foldl(String.split(atom_to_binary(controller),"."), "", 
+    url = List.foldl(String.split(atom_to_binary(controller),"."), "",
       fn (x, acc) ->
         case x do
          "Elixir" -> acc <> ""
          _ -> acc <> "/" <> x
-        end 
+        end
       end) |> String.downcase
 
     [[method: "GET",    path: url,                controller: controller, action: :index],

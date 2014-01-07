@@ -27,7 +27,7 @@ defmodule Weber do
         :ok = :application.start(:syntax_tools)
         :ok = :application.start(:goldrush)
         :ok = :application.start(:lager)
-        :ok = :application.start(:exlager) 
+        :ok = :application.start(:exlager)
       _ ->
         :ok
     end
