@@ -1,5 +1,13 @@
 defmodule Mix.Tasks.Weber.New do
 
+  def run([]) do
+    Mix.shell.info """
+    Usage:
+
+      mix weber.new /home/user/my_web_app - Give path to directory where you want your Weber app to be generated.
+    """
+  end
+
   @doc """
   Create default weber based project.
   """
