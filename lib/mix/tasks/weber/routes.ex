@@ -5,10 +5,28 @@ defmodule Mix.Tasks.Weber.Routes do
   """
   def run([]) do
     Weber.run_weber
-    routes = Route.__route__
+    formated_routes = routes(Route.__route__)
 
-    Mix.shell.info(inspect(routes))
+    Mix.shell.info(formated_routes)
     Weber.stop([])
+  end
+
+  def routes(routes) do
+    formated_routes = Enum.map routes, fn(route) ->
+      format_route(route)
+    end
+
+
+    Enum.join(formated_routes, "\n")
+  end
+
+  defp format_route(route) do
+    elements = Enum.map route, fn(vals) ->
+      {_, value} = vals
+      value
+    end
+
+    Enum.join(elements, " ")
   end
 
 end
