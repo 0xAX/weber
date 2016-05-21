@@ -7,7 +7,7 @@ defmodule Weber.Mixfile do
     [ app: :weber,
       version: "0.1.1",
       name: "Weber",
-      elixir: ">= 0.13.3",
+      elixir: ">= 1.0.0",
       deps: deps(Mix.env), 
       source_url: "https://github.com/0xAX/weber",
       homepage_url: "http://0xax.github.io/weber/index.html",
@@ -33,9 +33,9 @@ defmodule Weber.Mixfile do
  
   defp deps(:prod) do
     [
-      {:cowboy, "~> 1.0.0" },
-      {:jsex, github: "talentdeficit/jsex"},
-      {:plug, "~> 0.5.0"},
+      {:cowboy, "~> 1.0.0"},
+      {:exjsx, github: "talentdeficit/exjsx"},
+      {:plug, "~> 0.7.0"},
       {:exlager, github: "khia/exlager"},
       {:weberContrib, github: "0xAX/weber-contrib"}
     ]
